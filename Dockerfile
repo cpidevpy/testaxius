@@ -1,12 +1,15 @@
 FROM alpine:latest
 
-RUN apk add --no-cache openssl wget unzip
+RUN apk add --no-cache openssl wget unzip ca-certificates
 
-# Скачиваем Xray последней версии
+# Скачиваем официальный Xray-core
 RUN wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip && \
     unzip Xray-linux-64.zip -d /usr/local/bin/ && \
     rm Xray-linux-64.zip && \
-    chmod +x /usr/local/bin/xray
+    chmod +x /usr/local/bin/xray /usr/local/bin/xray-run
+
+# Проверяем, что xray установлен
+RUN ls -la /usr/local/bin/xray
 
 WORKDIR /etc/xray
 
