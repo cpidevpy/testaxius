@@ -1,9 +1,5 @@
 FROM ghcr.io/xtls/xray-core:latest
 
-RUN apk add --no-cache openssl
-
-WORKDIR /etc/xray
-
 COPY config.json /etc/xray/config.json
 COPY entrypoint.sh /entrypoint.sh
 
